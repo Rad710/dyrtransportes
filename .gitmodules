@@ -1,6 +1,8 @@
 [submodule "backend_flask"]
 	path = backend_flask
 	url = git@github.com:Rad710/dyrtransportes_flask.git
+	branch = develop
 [submodule "frontend_react"]
 	path = frontend_react
 	url = git@github.com:Rad710/dyrtransportes_react.git
+	branch = develop
