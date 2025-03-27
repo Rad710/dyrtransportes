@@ -1,5 +1,8 @@
-npm --prefix ./frontend_react/ install
-npm --prefix ./frontend_react/ audit fix --force
-npm --prefix ./frontend_react/ run build
+pnpm --prefix ./frontend_react/ install --frozen-lockfile
 
-/home/rolando/anaconda3/envs/dyrtransportes_flask/bin/python backend_flask/src/app.py
+rm -r ./frontend_react/dist/
+pnpm --prefix ./frontend_react/ run build
+
+cp -r ./frontend_react/dist/* ./backend_flask/src/static/
+
+flask --app ./backend_flask/src/app.py run --host 0.0.0.0 --port 8080
