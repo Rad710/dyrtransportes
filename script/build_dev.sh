@@ -11,11 +11,16 @@
 # Exit on any error
 set -e
 
+echo "Cleaning previous build..."
+rm -rf ./backend_flask/src/static/assets/ 2>/dev/null || true
+rm ./backend_flask/src/static/index.html 2>/dev/null || true
+
+rm -rf ./frontend_react/node_modules/ 2>/dev/null || true
+rm -rf ./frontend_react/dist/ 2>/dev/null || true
+
+
 echo "Installing frontend dependencies..."
 pnpm --prefix ./frontend_react/ install --frozen-lockfile
-
-echo "Cleaning previous build..."
-rm -rf ./frontend_react/dist/
 
 echo "Building frontend..."
 pnpm --prefix ./frontend_react/ run build:dev

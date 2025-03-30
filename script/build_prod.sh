@@ -11,11 +11,15 @@
 # Exit on any error
 set -e
 
+echo "Cleaning previous build..."
+rm -rf ./backend_flask/src/static/assets/ 2>/dev/null || true
+rm ./backend_flask/src/static/index.html 2>/dev/null || true
+
+rm -rf ./frontend_react/node_modules/ 2>/dev/null || true
+rm -rf ./frontend_react/dist/ 2>/dev/null || true
+
 echo "Installing frontend dependencies..."
 pnpm --prefix ./frontend_react/ install --frozen-lockfile
-
-echo "Cleaning previous build..."
-rm -rf ./frontend_react/dist/
 
 echo "Building frontend..."
 pnpm --prefix ./frontend_react/ run build
@@ -32,3 +36,8 @@ alembic -c src/migrations/alembic.ini upgrade head
 
 echo "Starting Flask server..."
 flask --app src/app.py run --host 0.0.0.0 --port 8080
+
+
+# TO UPLOAD FILES DO:
+# zip -r assets.zip assets/
+# unzip assets.zip -d .
