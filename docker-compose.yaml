@@ -13,6 +13,8 @@ services:
 
     depends_on:
       - dyrtransportes-flask
+      
+    restart: always
 
     networks:
       - dyrtransportes-frontend
